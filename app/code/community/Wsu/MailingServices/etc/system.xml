@@ -2,7 +2,7 @@
 <config>
   <sections>
     <mailingservices translate="label " module="mailingservices">
-      <label>Auto Review Reminder Email</label>
+      <label>Mailing Services</label>
       <tab>utilitiestab</tab>
       <frontend_type>text</frontend_type>
       <sort_order>4000</sort_order>
@@ -11,7 +11,7 @@
       <show_in_store>1</show_in_store>
       <groups>
         <reviewreminder translate="label" module="mailingservices">
-          <label>Auto Review Reminder Email Setting</label>
+          <label>Review Reminder Settings</label>
           <frontend_type>text</frontend_type>
           <sort_order>1000</sort_order>
           <show_in_default>1</show_in_default>

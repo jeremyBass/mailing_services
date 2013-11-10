@@ -1,20 +1,6 @@
 <?php
-
-/**
- * This class wraps the Newsletter email sending functionality
- * 
- * If MailingServices is enabled it will send emails using the given 
- * configuration.
- *
- * @author Jeremy Bass (jeremyBass)
- * @copyright  Copyright (c) 2013 Jeremy Bass
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
-class Wsu_MailingServices_Model_Newsletter_Template
-	extends Mage_Newsletter_Model_Template {
-	
-	
-	 /**
+class Wsu_MailingServices_Model_Newsletter_Template extends Mage_Newsletter_Model_Template {
+    /**
      * Send mail to subscriber
      *
      * @param   Mage_Newsletter_Model_Subscriber|string   $subscriber   subscriber Model or E-mail
@@ -23,107 +9,85 @@ class Wsu_MailingServices_Model_Newsletter_Template
      * @param   Mage_Newsletter_Model_Queue|null          $queue        queue model, used for problems reporting.
      * @return boolean
      **/
-    public function send($subscriber, array $variables = array(), $name=null, Mage_Newsletter_Model_Queue $queue=null)
-    {
-        if(!$this->isValidForSend()) {
+    public function send($subscriber, array $variables = array(), $name = null, Mage_Newsletter_Model_Queue $queue = null) {
+        if (!$this->isValidForSend()) {
             return false;
         }
-        
         // If it's not enabled, just return the parent result.
-    	if (!Mage::helper('mailingservices')->isEnabled()) {
-        	 return parent::send($subscriber, $variables, $name, $queue);
-		} 
-
-		Mage::log('MailingServices is enabled, sending email in Wsu_MailingServices_Model_Newsletter_Template'); 
-        
-
+        if (!Mage::helper('mailingservices')->isEnabled()) {
+            return parent::send($subscriber, $variables, $name, $queue);
+        }
+        Mage::log('MailingServices is enabled, sending email in Wsu_MailingServices_Model_Newsletter_Template');
         $email = '';
         if ($subscriber instanceof Mage_Newsletter_Model_Subscriber) {
             $email = $subscriber->getSubscriberEmail();
-            if (is_null($name) && ($subscriber->hasCustomerFirstname() || $subscriber->hasCustomerLastname()) ) {
+            if (is_null($name) && ($subscriber->hasCustomerFirstname() || $subscriber->hasCustomerLastname())) {
                 $name = $subscriber->getCustomerFirstname() . ' ' . $subscriber->getCustomerLastname();
             }
         } else {
             $email = (string) $subscriber;
         }
-
-		$mail = $this->getMail();
-
+        $mail = $this->getMail();
         if (Mage::getStoreConfigFlag(Mage_Newsletter_Model_Subscriber::XML_PATH_SENDING_SET_RETURN_PATH)) {
-        	// This is important for SPAM I think, what value should it be?
+            // This is important for SPAM I think, what value should it be?
             $mail->setReturnPath($this->getTemplateSenderEmail());
         }
-
         $transport = Mage::helper('mailingservices')->getTransport();
-        
-        $dev = Mage::helper('mailingservices')->getDevelopmentMode();
-       	
+        $dev       = Mage::helper('mailingservices')->getDevelopmentMode();
         if ($dev == "contact") {
-        	
-			$email = Mage::getStoreConfig('contacts/email/recipient_email');
-			Mage::log("Development mode set to send all emails to contact form recipient: " . $email);
-			
+            $email = Mage::getStoreConfig('contacts/email/recipient_email');
+            Mage::log("Development mode set to send all emails to contact form recipient: " . $email);
         } elseif ($dev == "supress") {
-        	
-			Mage::log("Development mode set to supress all emails.");
-			# we bail out, but report success
-        	return true;
+            Mage::log("Development mode set to supress all emails.");
+            # we bail out, but report success
+            return true;
         }
-
         $mail->addTo($email, $name);
         $text = $this->getProcessedTemplate($variables, true);
-
-        if($this->isPlain()) {
+        if ($this->isPlain()) {
             $mail->setBodyText($text);
         } else {
             $mail->setBodyHTML($text);
         }
-
         $mail->setSubject($this->getProcessedTemplateSubject($variables));
         $mail->setFrom($this->getTemplateSenderEmail(), $this->getTemplateSenderName());
-        
-         // If we are using store emails as reply-to's set the header
+        // If we are using store emails as reply-to's set the header
         if (Mage::helper('mailingservices')->isReplyToStoreEmail()) {
-        	// Later versions of Zend have a method for this, and disallow direct header setting...
-			if (method_exists($mail, "setReplyTo")) {
-				$mail->setReplyTo($this->getTemplateSenderEmail(), $this->getTemplateSenderName());
-			} else {
-	        	$mail->addHeader('Reply-To', $this->getTemplateSenderEmail());
-			}
-			Mage::log('ReplyToStoreEmail is enabled, just set Reply-To header: ' . $this->getTemplateSenderEmail());
+            // Later versions of Zend have a method for this, and disallow direct header setting...
+            if (method_exists($mail, "setReplyTo")) {
+                $mail->setReplyTo($this->getTemplateSenderEmail(), $this->getTemplateSenderName());
+            } else {
+                $mail->addHeader('Reply-To', $this->getTemplateSenderEmail());
+            }
+            Mage::log('ReplyToStoreEmail is enabled, just set Reply-To header: ' . $this->getTemplateSenderEmail());
         }
-
         try {
-        	
-        	Mage::log('About to send email');
-        	$mail->send($transport);
-			Mage::log('Finished sending email');
-			
-			 Mage::dispatchEvent('mailingservices_email_after_send', 
-			 	array('to' => $email,
-			 			'template' => $this->getTemplateId(),
-			 			'subject' => $mail->getSubject(),
-			 			'html' => !$this->isPlain(),
-			 			'email_body' => $text));
-				
-			
+            Mage::log('About to send email');
+            $mail->send($transport);
+            Mage::log('Finished sending email');
+            Mage::dispatchEvent('mailingservices_email_after_send', array(
+                'to' => $email,
+                'template' => $this->getTemplateId(),
+                'subject' => $mail->getSubject(),
+                'html' => !$this->isPlain(),
+                'email_body' => $text
+            ));
             $this->_mail = null;
-            if(!is_null($queue)) {
+            if (!is_null($queue)) {
                 $subscriber->received($queue);
             }
         }
         catch (Exception $e) {
-            if($subscriber instanceof Mage_Newsletter_Model_Subscriber) {
+            if ($subscriber instanceof Mage_Newsletter_Model_Subscriber) {
                 // If letter sent for subscriber, we create a problem report entry
                 $problem = Mage::getModel('newsletter/problem');
                 $problem->addSubscriberData($subscriber);
-                if(!is_null($queue)) {
+                if (!is_null($queue)) {
                     $problem->addQueueData($queue);
                 }
                 $problem->addErrorData($e);
                 $problem->save();
-
-                if(!is_null($queue)) {
+                if (!is_null($queue)) {
                     $subscriber->received($queue);
                 }
             } else {
@@ -132,8 +96,6 @@ class Wsu_MailingServices_Model_Newsletter_Template
             }
             return false;
         }
-
         return true;
     }
-    
 }

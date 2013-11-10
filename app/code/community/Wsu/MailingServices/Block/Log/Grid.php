@@ -35,11 +35,7 @@ class Wsu_MailingServices_Block_Log_Grid extends Mage_Adminhtml_Block_Widget_Gri
         ));
         return parent::_prepareColumns();
     }
-    /**
-     * Row click url
-     *
-     * @return string
-     */
+
     public function getRowUrl($row) {
         return $this->getUrl('*/*/view', array(
             'email_id' => $row->getId()
