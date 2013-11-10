@@ -1,9 +1,5 @@
 <?php
-/**
- * @author Jeremy Bass (jeremyBass)
- * @copyright  Copyright (c) 2013 Jeremy Bass
- * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- */
+
 
 class Wsu_MailingServices_Block_Log_View extends Mage_Catalog_Block_Product_Abstract {
 	 
