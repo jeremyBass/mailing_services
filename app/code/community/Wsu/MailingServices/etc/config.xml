@@ -1,16 +1,8 @@
 <?xml version="1.0"?>
-<!--
-	/**
-	* SMTP Pro integration.
-	 * @author Jeremy Bass (jeremyBass)
-	 * @copyright  Copyright (c) 2013 Jeremy Bass
-	 * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-	 */
--->
 <config>
   <modules>
     <Wsu_MailingServices>
-      <version>1.4.3</version>
+      <version>1.0.0</version>
     </Wsu_MailingServices>
   </modules>
   <frontend>
@@ -44,7 +36,7 @@
         <class>Wsu_MailingServices_Model_Mysql4</class>
         <entities>
           <email_log>
-            <table>mailingservices_email_log</table>
+            <table>wsu_mailingservices_email_log</table>
           </email_log>
         </entities>
       </mailingservices_mysql4>
