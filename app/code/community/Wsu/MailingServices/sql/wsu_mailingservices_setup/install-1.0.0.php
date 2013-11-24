@@ -2,7 +2,7 @@
 
 $installer = $this;
 $installer->startSetup();
-$table_email_log = $installer->getTable('wsu_mailingservices_email_log');
+$table_email_log = $installer->getTable('wsu_mailingservices/log');
 $installer->run("
     DROP TABLE IF EXISTS `{$table_email_log}`;
     CREATE TABLE `{$table_email_log}` (

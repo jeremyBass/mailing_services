@@ -28,18 +28,18 @@
       </mailingservices>
     </blocks>
     <models>
-      <mailingservices>
+      <wsu_mailingservices>
         <class>Wsu_MailingServices_Model</class>
-        <resourceModel>mailingservices_mysql4</resourceModel>
-      </mailingservices>
-      <mailingservices_mysql4>
-        <class>Wsu_MailingServices_Model_Mysql4</class>
+        <resourceModel>wsu_mailingservices_resource</resourceModel>
+      </wsu_mailingservices>
+      <wsu_mailingservices_resource>
+        <class>Wsu_MailingServices_Model_Resource</class>
         <entities>
-          <email_log>
+          <log>
             <table>wsu_mailingservices_email_log</table>
-          </email_log>
+          </log>
         </entities>
-      </mailingservices_mysql4>
+      </wsu_mailingservices_resource>
       <newsletter>
         <rewrite>
           <template>Wsu_MailingServices_Model_Newsletter_Template</template>
@@ -53,25 +53,11 @@
       </core>
     </models>
     <resources>
-      <mailingservices_setup>
+      <wsu_mailingservices_setup>
         <setup>
           <module>Wsu_MailingServices</module>
-          <class>Wsu_MailingServices_Model_Mysql4_Setup</class>
         </setup>
-        <connection>
-          <use>core_setup</use>
-        </connection>
-      </mailingservices_setup>
-      <mailingservices_write>
-        <connection>
-          <use>core_write</use>
-        </connection>
-      </mailingservices_write>
-      <mailingservices_read>
-        <connection>
-          <use>core_read</use>
-        </connection>
-      </mailingservices_read>
+      </wsu_mailingservices_setup>
     </resources>
     <events>
       <mailingservices_email_after_send>

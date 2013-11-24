@@ -7,7 +7,7 @@ class Wsu_MailingServices_Block_Log_Grid extends Mage_Adminhtml_Block_Widget_Gri
         $this->setDefaultDir('ASC');
     }
     protected function _prepareCollection() {
-        $collection = Mage::getModel('mailingservices/email_log')->getCollection();
+        $collection = Mage::getModel('wsu_mailingservices/log')->getCollection();
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
