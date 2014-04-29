@@ -88,7 +88,7 @@
       <groups>
         <smtp>
           <fields>
-            <wsu_mailingservices type="group" translate="label comment" module="wsu_mailingservices">
+            <mailingservices type="group" translate="label comment" module="wsu_mailingservices">
               <label>SMTP Email General Settings</label>
               <frontend_type>text</frontend_type>
               <sort_order>995</sort_order>
@@ -117,6 +117,18 @@
                   <show_in_website>0</show_in_website>
                   <show_in_store>0</show_in_store>
                 </store_addresses>
+                <from_address translate="label">
+                  <label>Custom Addresses for Reply-to</label>
+                  <frontend_type>text</frontend_type>
+                  <sort_order>3</sort_order>
+                  <show_in_default>1</show_in_default>
+                  <show_in_website>0</show_in_website>
+                  <show_in_store>0</show_in_store>
+				  <depends>
+				  	<store_addresses>0</store_addresses>
+				  </depends>
+				  <comment>This is the address that your emails will be from.</comment>
+                </from_address>
                 <development translate="label comment">
                   <label>Development Mode options</label>
                   <comment>These options can be used during development and testing to control the destination of all emails, or to stop Magento emails sending. (Note: if extensions do not send emails 'the magento way' then they will not be supressed)</comment>
@@ -147,7 +159,7 @@
                   <show_in_store>0</show_in_store>
                 </test>
               </fields>
-            </wsu_mailingservices>
+            </mailingservices>
             <googlesettings type="group" translate="label" module="wsu_mailingservices">
               <label>Google Apps/Gmail Settings</label>
               <frontend_type>text</frontend_type>
