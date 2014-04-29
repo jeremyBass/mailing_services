@@ -18,14 +18,14 @@
   </frontend>
   <global>
     <helpers>
-      <mailingservices>
+      <wsu_mailingservices>
         <class>Wsu_MailingServices_Helper</class>
-      </mailingservices>
+      </wsu_mailingservices>
     </helpers>
     <blocks>
-      <mailingservices>
+      <wsu_mailingservices>
         <class>Wsu_MailingServices_Block</class>
-      </mailingservices>
+      </wsu_mailingservices>
     </blocks>
     <models>
       <wsu_mailingservices>
@@ -64,7 +64,7 @@
         <observers>
           <mailingservices_email_after_send_observer>
             <type>singleton</type>
-            <class>mailingservices/observer</class>
+            <class>wsu_mailingservices/observer</class>
             <method>log</method>
           </mailingservices_email_after_send_observer>
         </observers>
@@ -77,9 +77,9 @@
         <children>
           <tools>
             <children>
-              <mailingservices translate="title" module="mailingservices">
+              <mailingservices translate="title" module="wsu_mailingservices">
                 <title>Email Log</title>
-                <action>mailingservices/log</action>
+                <action>wsu_mailingservices/log</action>
               </mailingservices>
             </children>
           </tools>
@@ -97,7 +97,7 @@
                     <mailingservices>
                       <title>SMTP Settings</title>
                     </mailingservices>
-                    <mailingservices translate="title" module="mailingservices">
+                    <mailingservices translate="title" module="wsu_mailingservices">
                       <title>Review Reminder</title>
                       <sort_order>110</sort_order>
                     </mailingservices>
@@ -136,7 +136,7 @@
           <cron_expr>* * * * *</cron_expr>
         </schedule>
         <run>
-          <model>mailingservices/reviewreminder::sendReviewLinkEmail</model>
+          <model>wsu_mailingservices/reviewreminder::sendReviewLinkEmail</model>
         </run>
       </reviewreminder_mail_send>
     </jobs>
