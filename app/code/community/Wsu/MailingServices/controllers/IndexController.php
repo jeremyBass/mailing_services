@@ -4,16 +4,16 @@ class Wsu_MailingServices_IndexController extends Mage_Adminhtml_Controller_Acti
     public function indexAction() {
         Mage::log("Running Mailing Services Self Test");
         #report development mode for debugging
-        $dev = Mage::helper('mailingservices')->getDevelopmentMode();
+        $dev = Mage::helper('wsu_mailingservices')->getDevelopmentMode();
         Mage::log("Development mode: " . $dev);
         $success      = true;
         $websiteModel = Mage::app()->getWebsite($this->getRequest()->getParam('website'));
         $msg          = "WSU Mailing Services Self-test results";
         $msg          = $msg . "<br/>Testing outbound connectivity to Server:";
         Mage::log("Raw connection test....");
-        $googleapps  = Mage::helper('mailingservices')->getGoogleApps();
-        $smtpEnabled = Mage::helper('mailingservices')->getSMTP();
-        $sesEnabled  = Mage::helper('mailingservices')->getSES();
+        $googleapps  = Mage::helper('wsu_mailingservices')->getGoogleApps();
+        $smtpEnabled = Mage::helper('wsu_mailingservices')->getSMTP();
+        $sesEnabled  = Mage::helper('wsu_mailingservices')->getSES();
         if ($googleapps) {
             $msg  = $msg . "<br/>Using Google Apps/Gmail configuration options";
             $host = "smtp.gmail.com";
@@ -54,7 +54,7 @@ class Wsu_MailingServices_IndexController extends Mage_Adminhtml_Controller_Acti
             Mage::log("Actual email sending test....");
             $msg = $msg . "<br/> Sending test email to your contact form address " . $to . ":";
             try {
-                $transport = Mage::helper('mailingservices')->getTransport($websiteModel->getId());
+                $transport = Mage::helper('wsu_mailingservices')->getTransport($websiteModel->getId());
                 $mail->send($transport);
                 Mage::dispatchEvent('mailingservices_email_after_send', array(
                     'to' => $to,

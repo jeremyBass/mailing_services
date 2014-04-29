@@ -80,7 +80,7 @@
       <groups>
         <smtp>
           <fields>
-            <mailingservices type="group" translate="label comment" module="mailingservices">
+            <mailingservices type="group" translate="label comment" module="wsu_mailingservices">
               <label>SMTP Email General Settings</label>
               <frontend_type>text</frontend_type>
               <sort_order>995</sort_order>
@@ -140,7 +140,7 @@
                 </test>
               </fields>
             </mailingservices>
-            <googlesettings type="group" translate="label" module="mailingservices">
+            <googlesettings type="group" translate="label" module="wsu_mailingservices">
               <label>Google Apps/Gmail Settings</label>
               <frontend_type>text</frontend_type>
               <sort_order>998</sort_order>
@@ -168,7 +168,7 @@
                 </gpassword>
               </fields>
             </googlesettings>
-            <smtpsettings type="group"  translate="label" module="mailingservices">
+            <smtpsettings type="group"  translate="label" module="wsu_mailingservices">
               <label>SMTP Email SMTP Settings</label>
               <frontend_type>text</frontend_type>
               <sort_order>997</sort_order>

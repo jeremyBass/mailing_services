@@ -2,8 +2,8 @@
 class Wsu_MailingServices_Model_Observer {
     public function log($observer) {
         $event = $observer->getEvent();
-        if (Mage::helper('mailingservices')->isLogEnabled()) {
-            Mage::helper('mailingservices')->log($event->getTo(), $event->getTemplate(), $event->getSubject(), $event->getEmailBody(), $event->getHtml());
+        if (Mage::helper('wsu_mailingservices')->isLogEnabled()) {
+            Mage::helper('wsu_mailingservices')->log($event->getTo(), $event->getTemplate(), $event->getSubject(), $event->getEmailBody(), $event->getHtml());
         }
         // For the self test, if we're sending the contact form notify the self test class
         Mage::log("template=" . $event->getTemplate());

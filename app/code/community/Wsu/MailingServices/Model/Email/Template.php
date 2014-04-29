@@ -2,7 +2,7 @@
 class Wsu_MailingServices_Model_Email_Template extends Mage_Core_Model_Email_Template {
     public function send($email, $name = null, array $variables = array()) {
         // If it's not enabled, just return the parent result.
-        if (!Mage::helper('mailingservices')->isEnabled()) {
+        if (!Mage::helper('wsu_mailingservices')->isEnabled()) {
             return parent::send($email, $name, $variables);
         }
         Mage::log('MailingServices is enabled, sending email in Wsu_MailingServices_Model_Email_Template');
@@ -27,7 +27,7 @@ class Wsu_MailingServices_Model_Email_Template extends Mage_Core_Model_Email_Tem
         $variables['email'] = reset($emails);
         $variables['name']  = reset($names);
         $mail               = $this->getMail();
-        $dev                = Mage::helper('mailingservices')->getDevelopmentMode();
+        $dev                = Mage::helper('wsu_mailingservices')->getDevelopmentMode();
         if ($dev == "contact") {
             $email = Mage::getStoreConfig('contacts/email/recipient_email', $this->getDesignConfig()->getStore());
             Mage::log("Development mode set to send all emails to contact form recipient: " . $email);
@@ -54,7 +54,7 @@ class Wsu_MailingServices_Model_Email_Template extends Mage_Core_Model_Email_Tem
         // Check the header is not already set by the application.
         // The contact form, for example, set's it to the sender of 
         // the contact. Thanks i960 for pointing this out.
-        if (Mage::helper('mailingservices')->isReplyToStoreEmail() && !array_key_exists('Reply-To', $mail->getHeaders())) {
+        if (Mage::helper('wsu_mailingservices')->isReplyToStoreEmail() && !array_key_exists('Reply-To', $mail->getHeaders())) {
             // Patch for Zend upgrade
             // Later versions of Zend have a method for this, and disallow direct header setting...
             if (method_exists($mail, "setReplyTo")) {
@@ -64,7 +64,7 @@ class Wsu_MailingServices_Model_Email_Template extends Mage_Core_Model_Email_Tem
             }
             Mage::log('ReplyToStoreEmail is enabled, just set Reply-To header: ' . $this->getSenderEmail());
         }
-        $transport = Mage::helper('mailingservices')->getTransport($this->getDesignConfig()->getStore());
+        $transport = Mage::helper('wsu_mailingservices')->getTransport($this->getDesignConfig()->getStore());
         try {
             Mage::log('About to send email');
             $mail->send($transport); // Zend_Mail warning..

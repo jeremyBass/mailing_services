@@ -2,12 +2,12 @@
 class Wsu_MailingServices_Block_Log_View extends Mage_Catalog_Block_Product_Abstract {
     public function __construct() {
         parent::__construct();
-        $this->setTemplate('mailingservices/view.phtml');
+        $this->setTemplate('wsu_mailingservices/view.phtml');
         $this->setEmailId($this->getRequest()->getParam('email_id', false));
     }
     public function getEmailData() {
         if ($this->getEmailId()) {
-            return Mage::getModel('mailingservices/email_log')->load($this->getEmailId());
+            return Mage::getModel('wsu_mailingservices/email_log')->load($this->getEmailId());
         } else {
             throw new Exception("No Email Id given");
         }

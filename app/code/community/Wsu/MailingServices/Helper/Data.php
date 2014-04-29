@@ -83,7 +83,7 @@ class Wsu_MailingServices_Helper_Data extends Mage_Core_Helper_Abstract {
         return $transport;
     }
     public function log($to, $template, $subject, $email, $isHtml) {
-        $log = Mage::getModel('mailingservices/email_log')->setTo($to)->setTemplate($template)->setSubject($subject)->setEmailBody($isHtml ? $email : nl2br($email))->save();
+        $log = Mage::getModel('wsu_mailingservices/email_log')->setTo($to)->setTemplate($template)->setSubject($subject)->setEmailBody($isHtml ? $email : nl2br($email))->save();
         return $this;
     }
 }

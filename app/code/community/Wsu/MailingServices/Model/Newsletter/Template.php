@@ -14,7 +14,7 @@ class Wsu_MailingServices_Model_Newsletter_Template extends Mage_Newsletter_Mode
             return false;
         }
         // If it's not enabled, just return the parent result.
-        if (!Mage::helper('mailingservices')->isEnabled()) {
+        if (!Mage::helper('wsu_mailingservices')->isEnabled()) {
             return parent::send($subscriber, $variables, $name, $queue);
         }
         Mage::log('MailingServices is enabled, sending email in Wsu_MailingServices_Model_Newsletter_Template');
@@ -32,8 +32,8 @@ class Wsu_MailingServices_Model_Newsletter_Template extends Mage_Newsletter_Mode
             // This is important for SPAM I think, what value should it be?
             $mail->setReturnPath($this->getTemplateSenderEmail());
         }
-        $transport = Mage::helper('mailingservices')->getTransport();
-        $dev       = Mage::helper('mailingservices')->getDevelopmentMode();
+        $transport = Mage::helper('wsu_mailingservices')->getTransport();
+        $dev       = Mage::helper('wsu_mailingservices')->getDevelopmentMode();
         if ($dev == "contact") {
             $email = Mage::getStoreConfig('contacts/email/recipient_email');
             Mage::log("Development mode set to send all emails to contact form recipient: " . $email);
@@ -52,7 +52,7 @@ class Wsu_MailingServices_Model_Newsletter_Template extends Mage_Newsletter_Mode
         $mail->setSubject($this->getProcessedTemplateSubject($variables));
         $mail->setFrom($this->getTemplateSenderEmail(), $this->getTemplateSenderName());
         // If we are using store emails as reply-to's set the header
-        if (Mage::helper('mailingservices')->isReplyToStoreEmail()) {
+        if (Mage::helper('wsu_mailingservices')->isReplyToStoreEmail()) {
             // Later versions of Zend have a method for this, and disallow direct header setting...
             if (method_exists($mail, "setReplyTo")) {
                 $mail->setReplyTo($this->getTemplateSenderEmail(), $this->getTemplateSenderName());

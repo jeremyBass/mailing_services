@@ -9,9 +9,9 @@ class Wsu_MailingServices_LogController extends Mage_Adminhtml_Controller_Action
         return $this;
     }
     public function indexAction() {
-        $this->_initAction()->_addContent($this->getLayout()->createBlock('mailingservices/log'))->renderLayout();
+        $this->_initAction()->_addContent($this->getLayout()->createBlock('wsu_mailingservices/log'))->renderLayout();
     }
     public function viewAction() {
-        $this->_initAction()->_addContent($this->getLayout()->createBlock('mailingservices/log_view'))->renderLayout();
+        $this->_initAction()->_addContent($this->getLayout()->createBlock('wsu_mailingservices/log_view'))->renderLayout();
     }
 }
