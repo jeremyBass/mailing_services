@@ -45,10 +45,18 @@ class Wsu_MailingServices_IndexController extends Mage_Adminhtml_Controller_Acti
             }
         }
         $to   = Mage::getStoreConfig('contacts/email/recipient_email', $websiteModel->getId());
+		if(Mage::helper('wsu_mailingservices')->isReplyToStoreEmail()){
+			$from = Mage::getStoreConfig('contacts/email/sender_email_identity', $websiteModel->getId());
+		}else{
+			$from = Mage::getStoreConfig('system/mailingservices/from_address', $websiteModel->getId());
+		}
         $mail = new Zend_Mail();
         $sub  = "Test Email From WSU Mailing Services Module";
-        $body = "Hi,\n\n" . "If you are seeing this email then your " . "SMTP Pro settings are correct! \n\n" . "For more information about this extension and " . "tips for using it please visit wsu.edu.\n\n" . "Regards,\nJeremy Bass";
-        $mail->addTo($to)->setFrom("jeremy.bass@wsu.edu") //@todo abstract this
+        $body = "Hi,\n\n" .
+				 "If you are seeing this email then your SMTP settings are correct! \n\n" .
+				 "For more information about this extension and tips for using it please visit wsu.edu.\n\n" .
+				 "Cheers,\nJeremy Bass";
+        $mail->addTo($to)->setFrom($from)
             ->setSubject($sub)->setBodyText($body);
         if ($dev != "supress") {
             Mage::log("Actual email sending test....");
