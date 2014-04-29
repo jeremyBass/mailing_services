@@ -7,13 +7,13 @@
   </modules>
   <frontend>
     <routers>
-      <mailingservices>
+      <wsu_mailingservices>
         <use>standard</use>
         <args>
           <module>Wsu_MailingServices</module>
-          <frontName>mailingservices</frontName>
+          <frontName>wsu_mailingservices</frontName>
         </args>
-      </mailingservices>
+      </wsu_mailingservices>
     </routers>
   </frontend>
   <global>
@@ -77,10 +77,10 @@
         <children>
           <tools>
             <children>
-              <mailingservices translate="title" module="wsu_mailingservices">
+              <wsu_mailingservices translate="title" module="wsu_mailingservices">
                 <title>Email Log</title>
                 <action>wsu_mailingservices/log</action>
-              </mailingservices>
+              </wsu_mailingservices>
             </children>
           </tools>
         </children>
@@ -94,13 +94,13 @@
               <children>
                 <config>
                   <children>
-                    <mailingservices>
+                    <wsu_mailingservices>
                       <title>SMTP Settings</title>
-                    </mailingservices>
-                    <mailingservices translate="title" module="wsu_mailingservices">
+                    </wsu_mailingservices>
+                    <wsu_mailingservices translate="title" module="wsu_mailingservices">
                       <title>Review Reminder</title>
                       <sort_order>110</sort_order>
-                    </mailingservices>
+                    </wsu_mailingservices>
                   </children>
                 </config>
               </children>
@@ -120,14 +120,14 @@
     </translate>
   </adminhtml>
   <default>
-    <mailingservices>
+    <wsu_mailingservices>
       <settings>
         <enabled>0</enabled>
         <store_addresses>0</store_addresses>
         <username></username>
         <password></password>
       </settings>
-    </mailingservices>
+    </wsu_mailingservices>
   </default>
   <crontab>
     <jobs>

@@ -2,7 +2,7 @@
 class Wsu_MailingServices_Block_Log_View extends Mage_Catalog_Block_Product_Abstract {
     public function __construct() {
         parent::__construct();
-        $this->setTemplate('wsu_mailingservices/view.phtml');
+        $this->setTemplate('wsu/mailingservices/view.phtml');
         $this->setEmailId($this->getRequest()->getParam('email_id', false));
     }
     public function getEmailData() {

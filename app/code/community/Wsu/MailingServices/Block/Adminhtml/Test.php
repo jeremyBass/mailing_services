@@ -14,7 +14,7 @@ class Wsu_MailingServices_Block_Adminhtml_Test extends Mage_Adminhtml_Block_Syst
         );
         // TODO: for real multi-store self-testing, the test button (and other configuration options) 
         // should probably be set to show in website. Currently they are not.
-        $url          = Mage::helper('adminhtml')->getUrl("mailingservices", $params);
+        $url          = Mage::helper('adminhtml')->getUrl("wsu_mailingservices", $params);
         return $this->getLayout()->createBlock('adminhtml/widget_button')->setType('button')->setLabel($this->__($title))->setOnClick("window.location.href='" . $url . "'")->toHtml();
     }
 }
