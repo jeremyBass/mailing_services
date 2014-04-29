@@ -94,9 +94,9 @@
               <children>
                 <config>
                   <children>
-                    <wsu_mailingservices>
+                    <mailingservices>
                       <title>SMTP Settings</title>
-                    </wsu_mailingservices>
+                    </mailingservices>
                     <wsu_mailingservices translate="title" module="wsu_mailingservices">
                       <title>Review Reminder</title>
                       <sort_order>110</sort_order>
