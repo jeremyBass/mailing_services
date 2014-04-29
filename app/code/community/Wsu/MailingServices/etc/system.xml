@@ -96,7 +96,7 @@
               <show_in_website>1</show_in_website>
               <show_in_store>0</show_in_store>
               <group>smtp</group>
-              <comment>If you are experiencing problems with this extension please run the self diagnosing test by clicking the button below. The module will log what it is doing if you enable logging, this can be useful to determine problems aswell. If you have any questions or would like any help please visit &lt;a href='http://wsu.edu' target='_blank'&gt;wsu.edu&lt;/a&gt;.</comment>
+              <comment>If you are experiencing problems with this extension please run the self diagnosing test by clicking the button below. The module will log what it is doing if you enable logging, this can be useful to determine problems aswell. If you have any questions or would like any help please visit &lt;a href='http://web.wsu.edu' target='_blank'&gt;web.wsu.edu&lt;/a&gt;.</comment>
               <fields>
                 <option translate="label comment">
                   <label>Choose extension option</label>
