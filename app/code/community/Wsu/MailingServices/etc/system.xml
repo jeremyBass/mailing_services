@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config>
   <sections>
-    <mailingservices translate="label " module="mailingservices">
+    <mailingservices translate="label " module="wsu_mailingservices">
       <label>Mailing Services</label>
       <tab>utilitiestab</tab>
       <frontend_type>text</frontend_type>
@@ -10,7 +10,7 @@
       <show_in_website>1</show_in_website>
       <show_in_store>1</show_in_store>
       <groups>
-        <reviewreminder translate="label" module="mailingservices">
+        <reviewreminder translate="label" module="wsu_mailingservices">
           <label>Review Reminder Settings</label>
           <frontend_type>text</frontend_type>
           <sort_order>1000</sort_order>
