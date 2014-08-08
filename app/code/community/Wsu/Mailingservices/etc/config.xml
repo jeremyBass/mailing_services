@@ -135,7 +135,7 @@
 		</mailingservices>
 	</smtp>
   </default>
-  <crontab>
+  <!--<crontab>
     <jobs>
       <reviewreminder_mail_send>
         <schedule>
@@ -146,5 +146,5 @@
         </run>
       </reviewreminder_mail_send>
     </jobs>
-  </crontab>
+  </crontab>-->
 </config>
