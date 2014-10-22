@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<layout>
+  <adminhtml_system_email_template_edit>
+    <reference name="left">
+      <block type="wsu_mailingservices/adminhtml_email"
+             name="wsu_mailingservices_adminhtml_email">
+        <block type="wsu_mailingservices/adminhtml_email_edit"
+               name="wsu_mailingservices_adminhtml_email_edit"/>
+        <block type="wsu_mailingservices/adminhtml_email_preview"
+               name="wsu_mailingservices_adminhtml_email_preview"/>
+
+        <action method="addTab">
+          <name>template_myedit</name>
+          <block>wsu_mailingservices_adminhtml_email_edit</block>
+        </action>
+
+        <action method="addTab">
+          <name>template_preview</name>
+          <block>wsu_mailingservices_adminhtml_email_preview</block>
+        </action>
+      </block>
+    </reference>
+  </adminhtml_system_email_template_edit>
+  
+  <adminhtml_preview_index>
+  	<reference name="root">
+  		<action method="setTemplate"><template>newsletter/template/preview.phtml</template></action>
+        <block type="wsu_mailingservices/adminhtml_email_previewContent" name="content" as="content"></block>
+  	</reference>
+  </adminhtml_preview_index>
+</layout>
